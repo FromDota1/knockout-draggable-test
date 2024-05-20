@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css"
+    />
+
+    <link rel="stylesheet" href="./assets/css/index.css" />
+
+    <title>Draggable knockout</title>
+  </head>
+  <body>
+    <section class="section-container">
+      <ul
+        class="draggable__list"
+        data-bind="sortable: { 
+          data: items, 
+          group: 'main',
+          connectClass: 'connected' ,
+          placeholder: 'ui-state-highlight' ,
+          options: { placeholder: 'sortable-placeholder', handle: '.sortable-handle' }
+        }"
+      >
+        <li class="draggable__list__item" data-bind="with: $data">
+          <div
+            class="draggable__list__item__content"
+            data-bind="click: toggleSublist"
+          >
+            <div>
+              <img
+                data-bind="css: { 'rotate': isOpen }"
+                class="draggable__list__item__content--arrow"
+                src="./assets/svg/arrow.svg"
+                alt=""
+              />
+              <p
+                class="draggable__list__item__content--title"
+                data-bind="text: title"
+              ></p>
+            </div>
+            <div class="sortable-handle">
+              <img
+                class="draggable__list__item__content--switch"
+                src="./assets/svg/arrow-switch.svg"
+                alt=""
+              />
+            </div>
+          </div>
+          <ul
+            class="draggable__list__item__sublist"
+            data-bind=" sortable: { 
+              data: subitems, 
+              group: 'sub', 
+              connectWith: '.connected',  
+              options: { placeholder: 'sortable-placeholder', handle: '.sortable-handle' }
+            },
+            css: { open: isOpen },
+            "
+          >
+            <li class="draggable__list__item__sublist__item">
+              <p data-bind="text: name"></p>
+              <div class="sortable-handle">
+                <img src="./assets/svg/arrow-switch.svg" alt="" />
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout-sortable/1.2.0/knockout-sortable.min.js"></script>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>

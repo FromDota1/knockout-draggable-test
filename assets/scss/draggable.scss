@@ -1,0 +1,63 @@
+.draggable__list {
+  .ui-sortable-helper {
+    box-shadow: 0 0 16px $blue;
+    .sublist {
+      display: none;
+    }
+  }
+  &__item {
+    .rotate {
+      transform: rotate(180deg);
+    }
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid $border-gray;
+      padding: 13px 16px;
+      cursor: pointer;
+      & > div {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      &--arrow {
+        width: 22px;
+        transition: 0.3s;
+      }
+      &--title {
+        font-size: 15px;
+        font-weight: bold;
+      }
+    }
+
+    .open {
+      max-height: 500px;
+    }
+    &__sublist {
+      width: 95%;
+      margin: 0 auto !important;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease-out;
+
+      &__item {
+        background: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid $border-gray;
+        padding: 10px 13px;
+        cursor: pointer;
+        p {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  .sortable-placeholder {
+    background: $blue;
+    height: 5px;
+  }
+}
