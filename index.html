@@ -7,9 +7,7 @@
       rel="stylesheet"
       href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css"
     />
-
     <link rel="stylesheet" href="./assets/css/index.css" />
-
     <title>Draggable knockout</title>
   </head>
   <body>
@@ -18,13 +16,15 @@
         class="draggable__list"
         data-bind="sortable: { 
           data: items, 
-          group: 'main',
-          connectClass: 'connected' ,
-          placeholder: 'ui-state-highlight' ,
+          connectClass: 'connected',
+          placeholder: 'ui-state-highlight',
           options: { placeholder: 'sortable-placeholder', handle: '.sortable-handle' }
         }"
       >
-        <li class="draggable__list__item" data-bind="with: $data">
+        <li
+          class="draggable__list__item"
+          data-bind="with: $data,attr: { 'data-index': $index}"
+        >
           <div
             class="draggable__list__item__content"
             data-bind="click: toggleSublist"
@@ -51,14 +51,12 @@
           </div>
           <ul
             class="draggable__list__item__sublist"
-            data-bind=" sortable: { 
-              data: subitems, 
-              group: 'sub', 
-              connectWith: '.connected',  
+            data-bind="sortable: { 
+              data: subitems,
+
+              connectWith: '.connected',
               options: { placeholder: 'sortable-placeholder', handle: '.sortable-handle' }
-            },
-            css: { open: isOpen },
-            "
+            }, css: { open: isOpen }"
           >
             <li class="draggable__list__item__sublist__item">
               <p data-bind="text: name"></p>
